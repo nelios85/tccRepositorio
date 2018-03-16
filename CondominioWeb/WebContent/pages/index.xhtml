@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/templates/modeloTemplate.xhtml">
+	
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml" />
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		<div class="col-md-10"></div>
+		<h1 class="cover-heading">Realizar Cadastro</h1>
+        <p class="lead">Cadastre um novo morador ou novo apartamento</p>
+        <p class="lead">
+          <h:link styleClass="btn btn-lg btn-secondary" outcome="cadastroMorador.xhtml">Cadastrar</h:link>
+        </p>
+
+	</ui:define>
+
+</ui:composition>
