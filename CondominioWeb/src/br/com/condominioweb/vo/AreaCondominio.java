@@ -1,15 +1,26 @@
 package br.com.condominioweb.vo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="AreaCondominio")
 public class AreaCondominio {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
+	@Column
 	private Integer bloco;
-	
+	@Column
 	private Integer apartamento;
-	
+	@Column
 	private Integer qtdMorador;
-	
+	@Column
 	private String ocorrencia;
 	
 
@@ -52,7 +63,4 @@ public class AreaCondominio {
 	public void setOcorrencia(String ocorrencia) {
 		this.ocorrencia = ocorrencia;
 	}
-	
-	
-
 }
