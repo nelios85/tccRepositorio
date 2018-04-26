@@ -10,36 +10,52 @@ import javax.persistence.Query;
 import br.com.condominioweb.vo.Morador;
 
 public class MoradorController {
-		
-	EntityManagerFactory emf;
-	EntityManager em;
 	
+	EntityManagerFactory entityManagerFactory;
+	EntityManager entityManager;
+	
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 	public MoradorController() {
-		emf = Persistence.createEntityManagerFactory("condominio");
-		em = emf.createEntityManager();
+		entityManagerFactory = Persistence.createEntityManagerFactory("nelio");
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 
 	public void salvar(Morador morador) {
-		em.getTransaction().begin();
-		em.merge(morador);
-		em.getTransaction().commit();
-		emf.close();
+		entityManager.getTransaction().begin();
+	//	entityManager.merge(morador);
+		entityManager.persist(morador);
+		entityManager.getTransaction().commit();
 	}
 	
 	public void remover(Morador morador){
-		em.getTransaction().begin();
-		Query q = em.createNativeQuery("DELETE FROM morador WHERE id="+morador.getId());
+		entityManager.getTransaction().begin();
+		Query q = entityManager.createNativeQuery("DELETE FROM morador WHERE id="+morador.getId());
 		q.executeUpdate();
-		em.getTransaction().commit();
-		emf.close();
+		entityManager.getTransaction().commit();
+		entityManagerFactory.close();
 	}
 	
 	public List<Morador> listar(){
-		em.getTransaction().begin();
-		Query consulta = em.createQuery("SELECT * FROM morador");
+		entityManager.getTransaction().begin();
+		Query consulta = entityManager.createQuery("SELECT * FROM morador");
 		List<Morador> lista = consulta.getResultList();
-		em.getTransaction();
-		emf.close();
+		entityManager.getTransaction();
+		entityManagerFactory.close();
 		return lista;
 	}
 	
@@ -47,13 +63,12 @@ public class MoradorController {
 		Morador m1 = new Morador();
 		
 		m1.setNome("Nelio Santos");
-		m1.setEmail("neli.souza@gmail.com");
-		m1.setSenha("ssdd");
+		m1.setEmail("nelios.souza@gmail.com");
+		m1.setSenha("1234");
 		m1.setTelefone(12345565);
-		m1.setTipo("Morador");
+		m1.setTipo("Subsíndico");
 
 		MoradorController con = new MoradorController();
 		con.salvar(m1);
-		
-	} */
+	}	*/
 }

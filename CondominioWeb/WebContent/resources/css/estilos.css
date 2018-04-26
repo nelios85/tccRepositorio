@@ -21,3 +21,12 @@
 .imgLogo{
 	float: left;
 }
+
+body{
+	text-shadow: none !important;
+}
+
+space-nav{
+	padding-right: 0 !important;
+    padding-left: 0 !important;
+}
