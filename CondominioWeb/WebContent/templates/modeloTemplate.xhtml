@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
   <h:head>
     <meta charset="utf-8" />
@@ -20,26 +19,21 @@
 		<div class="col-md-12 space-nav size-01 d-flex h-100 p-3 mx-auto flex-column">
 			<header class="masthead mb-auto">
         		<div class="inner">
-						<ui:insert name="menu" />
+					<ui:insert name="menu" />
 				</div>
 			</header>
 		
 		      <main role="main" class="inner cover">
-						<ui:insert name="conteudo" />
+					<ui:insert name="conteudo" />
 			  </main>
 	  
-		  
 		  	<footer class="mastfoot mt-auto">
 	        	<div class="inner">
-	         		 <p>Rio de Janeiro - UNESA - 2018 <a href="https://getbootstrap.com/"></a></p>
+	         		 <p>Rio de Janeiro - UNESA - 2018 <a href="#"></a></p>
 	        	</div>
 	     	</footer>
 	    </div>
 
-	
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<h:outputScript library="js" name="popper.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />

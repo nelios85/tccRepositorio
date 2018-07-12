@@ -6,55 +6,32 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.transaction.Transactional;
+import javax.faces.context.FacesContext;
 
+import br.com.condominioweb.dao.ApartamentoDAO;
 import br.com.condominioweb.dao.MoradorDAO;
-import br.com.condominioweb.factory.MoradorController;
 import br.com.condominioweb.util.JSFUtil;
-import br.com.condominioweb.vo.AreaCondominio;
+import br.com.condominioweb.vo.Apartamento;
 import br.com.condominioweb.vo.Morador;
-import net.bytebuddy.description.annotation.AnnotationList.Empty;
 
-@ManagedBean(name="condominioBean")
+@ManagedBean(name="moradorBean")
 @ViewScoped
-public class CondominioBean {
+public class MoradorBean{
 	
-	private Morador morador;
+	private Morador morador = new Morador();
 	private MoradorDAO moradorDAO = new MoradorDAO();
-	private AreaCondominio areaCondominio;
-	private MoradorController moradorController = new MoradorController();
 	private List<Morador> listarMorador = new ArrayList<Morador>();
 
-	public MoradorDAO getMoradorDAO() {
-		return moradorDAO;
-	}
-
-	public void setMoradorDAO(MoradorDAO moradorDAO) {
-		this.moradorDAO = moradorDAO;
-	}
-
+	//Redirect
+	private static final String SUCESSO_NOVO_CADASTRO = "sucesso.xhtml";
+	private static final String SUCESSO_REMOVER_CADASTRO = "sucessoRemover.xhtml";
+	
 	public Morador getMorador() {
 		return morador;
 	}
 
 	public void setMorador(Morador morador) {
 		this.morador = morador;
-	}
-
-	public AreaCondominio getAreaCondominio() {
-		return areaCondominio;
-	}
-
-	public void setAreaCondominio(AreaCondominio areaCondominio) {
-		this.areaCondominio = areaCondominio;
-	}
-	
-	public MoradorController getMoradorController() {
-		return moradorController;
-	}
-
-	public void setMoradorController(MoradorController moradorController) {
-		this.moradorController = moradorController;
 	}
 	
 	public List<Morador> getListarMorador() {
@@ -64,40 +41,36 @@ public class CondominioBean {
 	public void setListarMorador(List<Morador> listarMorador) {
 		this.listarMorador = listarMorador;
 	}
-	
+
 	@PostConstruct
 	public void unit() {
-		
+		listarMorador();
 	}
 	
 	/**
-	 * adicionar novo morador com moradorController
+	 * Adicionando novo morador
+	 * @return
 	 */
 	public void novoMorador() {
 		try {
-			morador = new Morador();
-			moradorController = new MoradorController();
-			moradorController.salvar(morador);
+			moradorDAO.salvar(morador);
 			JSFUtil.adicionarMensagemSucesso("Morador salvo com sucesso.");
-			System.out.println("Salvando...");
+			FacesContext.getCurrentInstance().getExternalContext().redirect(SUCESSO_NOVO_CADASTRO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro("Ocorreu um erro ao tentar salvar um novo morador.");
 		}
 	}
 	
-	/**
-	 * MoradorDAO
-	 */
-	public void adicionarUsuario() {
-		moradorDAO.inserirMorador(morador);
-		System.out.println("adicionado como MoradorDAO");
-	}
 	
+	/**
+	 * Excluindo morador
+	 */
 	public void deletaMorador() {
 		try {
-			moradorController.remover(morador);
+			moradorDAO.remover(morador);
 			JSFUtil.adicionarMensagemSucesso("Morador removido com sucesso.");
+			FacesContext.getCurrentInstance().getExternalContext().redirect(SUCESSO_REMOVER_CADASTRO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,15 +78,17 @@ public class CondominioBean {
 		}
 	}
 	
+	
+	/**
+	 * Listando moradores ArrayList
+	 */
 	public void listarMorador() {
 		try {
-			listarMorador = moradorController.listar();
-			
+			listarMorador = moradorDAO.listar();
+			JSFUtil.adicionarMensagemSucesso("Moradores listados com sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtil.adicionarMensagemErro("Ocorreu um erro ao tentar listar moradores.");
 		}
-		
 	}
-	
 }
