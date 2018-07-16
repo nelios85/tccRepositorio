@@ -18,12 +18,12 @@
 					<h4 class="mb-3">Cadastro de novo morador</h4>
 			    	<div class="form-group col-md-8">
 			      		<label for="inputName">Nome</label>
-			      		<h:inputText id="inputName" type="text" value="#{condominioBean.morador.nome}" styleClass="form-control" placeholder="Seu nome completo" />
+			      		<h:inputText id="inputName" type="text" value="#{moradorBean.morador.nome}" styleClass="form-control" placeholder="Seu nome completo" />
 			    	</div>
 			    	
 			    	 <div class="form-group col-md-8">
 			      		<label for="emailId">Email</label>
-			      		<h:inputText id="emailId" type="email" value="#{condominioBean.morador.email}" styleClass="form-control" placeholder="you@youemail.com">
+			      		<h:inputText id="emailId" type="email" value="#{moradorBean.morador.email}" styleClass="form-control" placeholder="you@youemail.com">
 			      			<f:validator validatorId="emailValidator" />
 			      		</h:inputText>
 			      		<h:message for="emailId" style="color:red"/>
@@ -31,12 +31,12 @@
 			    
 			    	 <div class="form-group col-md-8">
 			      		<label for="inputSenha">Senha</label>
-			      		<h:inputText id="inputSenha" type="password" value="#{condominioBean.morador.senha}" styleClass="form-control" placeholder="Digite sua senha" />
+			      		<h:inputText id="inputSenha" type="password" value="#{moradorBean.morador.senha}" styleClass="form-control" placeholder="Digite sua senha" />
 			    	</div>
 			    
 			    	 <div class="form-group col-md-8">
 			      		<label for="inputTel">Telefone</label>
-			      		<h:inputText id="inputTel" type="text" value="#{condominioBean.morador.telefone}" styleClass="form-control" placeholder="Digite sua senha" />
+			      		<h:inputText id="inputTel" type="text" value="#{moradorBean.morador.telefone}" styleClass="form-control" placeholder="Digite sua senha" />
 			    	</div>
 			   
 				   <div class="form-group col-md-8">
@@ -51,7 +51,7 @@
 			  	  </div>
 			  	  
 				   <div class="form-group col-md-8">
-				   		<h:commandButton actionListener="#{condominioBean.novoMorador}" styleClass="btn btn-primary" value="Cadastrar" />
+				   		<h:commandButton actionListener="#{moradorBean.novoMorador}" styleClass="btn btn-primary" value="Cadastrar" />
 				   </div>
 				</h:form>
 			</div>

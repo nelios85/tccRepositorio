@@ -1,9 +1,13 @@
 package br.com.condominioweb.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,38 +23,30 @@ import javax.persistence.Table;
 public class Morador {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column
 	private String nome;
 
-	@Column
 	private String sobrenome;
 
-	@Column
 	private int cpf;
 
-	@Column
 	private String senha;
 
-	@Column
 	private String tipo;
 
-	@Column
 	private int telefone;
 
-	@Column
 	private String email;
 
-	@Column
 	private String ocorrencia;
 
-	@ManyToMany
-	@JoinTable(name="morador_tem_apartamentos",joinColumns=
-	{@JoinColumn(name="morador_id")}, inverseJoinColumns=
-		{@JoinColumn(name="apartamento_id")})
-	private List<Apartamento> apartamentos;
-
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="morador_apartamento",
+				joinColumns={@JoinColumn(name="morador_id")},
+				inverseJoinColumns={@JoinColumn(name="apartamento_id")})
+	private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
 
 	public Long getId() {
 		return id;
@@ -124,12 +120,11 @@ public class Morador {
 		this.ocorrencia = ocorrencia;
 	}
 
-	public List getApartamentos() {
+	public List<Apartamento> getApartamentos() {
 		return apartamentos;
 	}
 
-	public void setApartamentos(List apartamentos) {
+	public void setApartamentos(List<Apartamento> apartamentos) {
 		this.apartamentos = apartamentos;
 	}
-
 }
