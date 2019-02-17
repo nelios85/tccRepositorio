@@ -14,6 +14,8 @@ import br.com.condominioweb.util.JSFUtil;
 import br.com.condominioweb.vo.Apartamento;
 import br.com.condominioweb.vo.Morador;
 
+//teste de pull
+
 @ManagedBean(name="moradorBean")
 @ViewScoped
 public class MoradorBean{
